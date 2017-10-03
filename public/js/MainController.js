@@ -42,6 +42,6 @@
     startCountdown();
   };
   
-  app.controller("MainController", ["$scope", "github", "$interval", "$log", "$anchorScroll", "$location", MainController]);
+  app.controller("MainController", ["$scope", "$interval", "$location", MainController]);
     
 }());
