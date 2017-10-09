@@ -5,20 +5,16 @@
 (function(){
   var module = angular.module("githubViewer");
   
-  var UserController = function($scope, github, $routeParams){
+  var RepoController = function($scope, github, $routeParams){
     $scope.message = "Searching...";
     $scope.repoSortOrder = "-stargazers_count";
     $scope.repoLimit = "none";
     $scope.username = $routeParams.username;
+    $scope.reponame = $routeParams.reponame;
     
-    var onUserComplete = function(data){
-      $scope.message = "Found User";
-      $scope.user = data;
-      github.getRepos($scope.user).then(onRepos, onError);
-    };
-    
-    var onRepos = function(data){
-      $scope.repos = data;
+    var onRepo = function(data){
+      $scope.message = "Found repo data";
+      $scope.repo = data;
     }
     
     var onError = function(reason){
@@ -26,9 +22,9 @@
       $scope.message = "Could not fetch the data";
     };
     
-    github.getUser($scope.username).then(onUserComplete, onError);
+    github.getRepoDetails($scope.username, $scope.reponame).then(onRepo, onError);
   };
   
-  module.controller("UserController", ["$scope", "github", "$routeParams", UserController]);
+  module.controller("RepoController", ["$scope", "github", "$routeParams", RepoController]);
     
 }());

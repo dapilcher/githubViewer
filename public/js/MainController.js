@@ -3,7 +3,7 @@
 // IIFE ("iffy") - immediately invoked function expression
 // --> No global variables.
 (function(){
-  var app = angular.module("githubViewer");
+  var module = angular.module("githubViewer");
   
   var MainController = function($scope, $interval, $location){
     $scope.username = "angular";
@@ -31,17 +31,12 @@
         $interval.cancel(countdownInterval);
         $scope.countdown = "";
       }
-      // routing logic
+      $location.path("/user/" + username);
     };
     
-    $scope.templates = 
-      [{ name: 'userdetails', url: 'userdetails.html' }]
-    
-    $scope.template = $scope.templates[0]
-    
-    startCountdown();
+    //startCountdown();
   };
   
-  app.controller("MainController", ["$scope", "$interval", "$location", MainController]);
+  module.controller("MainController", ["$scope", "$interval", "$location", MainController]);
     
 }());

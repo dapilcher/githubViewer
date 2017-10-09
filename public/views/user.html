@@ -1,4 +1,6 @@
-<div id="userDetails">
+<a href="/#!/main">Back to search</a>
+<div>
+  <p>{{ message }}</p>
   <h2>{{ user.name }}</h2>
   <img style="max-width: 200px"ng-src="{{ user.avatar_url }}" title="{{ user.name }}" />
 </div>
@@ -33,7 +35,7 @@
 
   <tbody>
     <tr ng-repeat="repo in repos | orderBy:repoSortOrder| limitTo:repoLimit">
-      <td>{{ repo.name }}</td>
+      <td><a href="/#!/repo/{{user.login}}/{{repo.name}}">{{ repo.name }}</a></td>
       <td>{{ repo.stargazers_count | number }}</td>
       <td>{{ repo.language }}</td>
     </tr>
